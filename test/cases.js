@@ -9,17 +9,11 @@ cases.forEach(function(name) {
     var dir = path.join(__dirname, 'cases', name);
     var inputFile = path.join(dir, 'input.css');
     var astFile = path.join(dir, 'ast.json');
-    var outputFile = path.join(dir, 'output.css');
     var compressedFile = path.join(dir, 'compressed.css');
 
     it('should match ast.json', function() {
       var ast = parseInput();
       ast.should.containDeep(JSON.parse(readFile(astFile)));
-    });
-
-    it('should match output.css', function() {
-      var output = stringify(parseInput());
-      output.should.equal(readFile(outputFile).trim());
     });
 
     it('should match compressed.css', function() {
